@@ -12,6 +12,7 @@ export default defineNuxtConfig({
                 }
             }
         }],
+        'nuxt-icon'
     ],
     tailwindcss: {
         exposeConfig: true,
