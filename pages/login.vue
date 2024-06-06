@@ -31,7 +31,7 @@
 </template>
 
 <script setup lang="ts">
-import {useIsLoadingStore} from "~/store/auth.store";
+import {useAuthStore, useIsLoadingStore} from "~/store/auth.store";
 
 useHead({
   title: 'Login | CRM System'
@@ -42,7 +42,27 @@ const emailRef = ref('')
 const passwordRef = ref('')
 
 const isLoadingStore = useIsLoadingStore()
+const authStore = useAuthStore()
 const router = useRouter()
+
+const login = async () => {
+  isLoadingStore.set(true)
+  await account.createEmailPasswordSession(emailRef.value, passwordRef.value)
+  const response = await account.get()
+  if (response) {
+    authStore.set({
+      email: response.email,
+      name: response.name,
+      status: response.status
+    })
+  }
+  emailRef.value = ''
+  passwordRef.value = ''
+  nameRef.value = ''
+
+  await router.push('/')
+  isLoadingStore.set(false)
+}
 
 </script>
 
