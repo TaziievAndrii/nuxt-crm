@@ -12,7 +12,8 @@ export default defineNuxtConfig({
                 }
             }
         }],
-        'nuxt-icon'
+        'nuxt-icon',
+        '@pinia/nuxt',
     ],
     tailwindcss: {
         exposeConfig: true,
@@ -21,5 +22,8 @@ export default defineNuxtConfig({
     shadcn: {
         prefix: 'Ui',
         componentDir: './components/ui'
-    }
+    },
+    pinia: {
+        storesDirs: ['./stores/**'],
+    },
 })

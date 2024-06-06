@@ -31,6 +31,8 @@
 </template>
 
 <script setup lang="ts">
+import {useIsLoadingStore} from "~/store/auth.store";
+
 useHead({
   title: 'Login | CRM System'
 })
@@ -38,6 +40,9 @@ useHead({
 const nameRef = ref('')
 const emailRef = ref('')
 const passwordRef = ref('')
+
+const isLoadingStore = useIsLoadingStore()
+const router = useRouter()
 
 </script>
 
