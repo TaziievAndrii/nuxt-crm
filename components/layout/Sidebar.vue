@@ -11,6 +11,7 @@
           class="mx-auto"/>
     </NuxtLink>
     <button
+        @click="logout"
         class="absolute top-2 right-3 transition-colors hover:text-purple-400">
       <Icon
           name="line-md:logout"
@@ -21,7 +22,18 @@
 </template>
 
 <script lang="ts" setup>
+import {useAuthStore, useIsLoadingStore} from "~/store/auth.store";
 
+const store = useAuthStore()
+const router = useRouter()
+const isLoadingStore = useIsLoadingStore()
+const logout = async () => {
+  isLoadingStore.set(true)
+  await account.deleteSession('current')
+  store.clear()
+  await router.push('/login')
+  isLoadingStore.set(false)
+}
 </script>
 
 <style lang="scss" scoped>

@@ -21,8 +21,8 @@
             class="mb-3"/>
 
         <div class="flex items-center justify-center gap-5">
-          <UiButton type="button">Login</UiButton>
-          <UiButton type="button">Register</UiButton>
+          <UiButton type="button" @click="login">Login</UiButton>
+          <UiButton type="button" @click="register">Register</UiButton>
         </div>
       </form>
 
@@ -31,6 +31,8 @@
 </template>
 
 <script setup lang="ts">
+import {v4 as uuid} from 'uuid'
+
 import {useAuthStore, useIsLoadingStore} from "~/store/auth.store";
 
 useHead({
@@ -62,6 +64,11 @@ const login = async () => {
 
   await router.push('/')
   isLoadingStore.set(false)
+}
+
+const register = async () => {
+  await account.create(uuid(),emailRef.value,passwordRef.value,nameRef.value)
+  await login()
 }
 
 </script>
