@@ -1,6 +1,6 @@
 export const convertCurrency = (amount: string | number) => {
-	return new Intl.NumberFormat('ru-RU', {
+	return new Intl.NumberFormat('fr-Fr', {
 		style: 'currency',
-		currency: 'RUB',
+		currency: 'EUR',
 	}).format(+amount)
 }

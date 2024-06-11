@@ -10,9 +10,16 @@
           </div>
           <div>
             <UiCard class="mb-3" draggable="true" v-for="card in column.items" :key="card.id">
-              <UiCardHeader role="button">{{card.name}}</UiCardHeader>
-              <UiCardContent>Company</UiCardContent>
-              <UiCardFooter>Date</UiCardFooter>
+              <UiCardHeader role="button">
+                <UiCardTitle>
+                  {{ card.name }}
+                </UiCardTitle>
+                <UiCardDescription class="mt-2 block">
+                  {{ convertCurrency(card.price) }}
+                </UiCardDescription>
+              </UiCardHeader>
+              <UiCardContent class="text-xs">{{ card.companyName }}</UiCardContent>
+              <UiCardFooter>{{ dayjs(card.$createdAt).format('DD MMMM YYYY') }}</UiCardFooter>
             </UiCard>
           </div>
         </div>
@@ -24,6 +31,10 @@
 <script setup lang="ts">
 import type {ICard, IColumn} from "~/components/kanban/kanban.types";
 import {useKanbanQuery} from "~/components/kanban/useKanbanQuery";
+
+import {convertCurrency} from '@/utils/convertCurrency'
+
+import dayjs from "dayjs";
 
 useSeoMeta({
   title: 'Home | CRM System'
