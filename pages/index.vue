@@ -9,7 +9,8 @@
             {{ column.name }}
           </div>
           <div>
-            <UiCard class="mb-3" draggable="true" v-for="card in column.items" :key="card.id">
+            <KanbanCreateDeal :refetch="refetch" :status="column.id"/>
+            <UiCard class="mb-5" draggable="true" v-for="card in column.items" :key="card.id">
               <UiCardHeader role="button">
                 <UiCardTitle>
                   {{ card.name }}
