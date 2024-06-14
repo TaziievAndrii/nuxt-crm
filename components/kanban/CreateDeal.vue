@@ -36,7 +36,7 @@
         placeholder="Customer email"
         v-model="customerEmail"
         v-bind="customerEmailAttrs"
-        type="text"
+        type="email"
         class="input"
     />
     <UiInput
